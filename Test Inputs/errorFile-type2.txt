@@ -1,0 +1,14 @@
+<LPAREN, None>
+<STRING,  >
+<COLON, None>
+<STRING, blue>
+<COMMA, None>
+<STRING, is_activated>
+<COLON, None>
+<TRUE, None>
+<COMMA, None>
+<STRING, owner>
+<COLON, None>
+<STRING, Luke Skywalker>
+<RPAREN, None>
+<EOF, None>

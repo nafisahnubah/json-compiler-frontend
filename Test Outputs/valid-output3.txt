@@ -1,0 +1,23 @@
+Object:
+  name: 'Sirius Black'
+  house: 'Gryffindor'
+  year_of_birth: 1959.0
+  is_half_blood: False
+  wand: 
+    Object:
+      wood: 'Unknown'
+      core: 'Unknown'
+      length: None
+  patronus: 'Dog'
+  friends: 
+    Array:
+      'James Potter'
+      'Remus Lupin'
+      'Peter Pettigrew'
+  special_skills: 
+    Array:
+      'Animagus Transformation'
+      'Dueling'
+  boggart: 'Azkaban Prison'
+  quiddich_player: False
+  future_profession: 'Member of the Order of the Phoenix'

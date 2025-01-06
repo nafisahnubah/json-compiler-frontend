@@ -1,0 +1,14 @@
+<LPAREN, None>
+<STRING, age>
+<COLON, None>
+<NUMBER, +16>
+<COMMA, None>
+<STRING, is_activated>
+<COLON, None>
+<TRUE, None>
+<COMMA, None>
+<STRING, owner>
+<COLON, None>
+<STRING, Luke Skywalker>
+<RPAREN, None>
+<EOF, None>

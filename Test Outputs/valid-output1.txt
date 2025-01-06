@@ -1,0 +1,23 @@
+Object:
+  name: 'Harry Potter'
+  house: 'Gryffindor'
+  year_of_birth: 1980.0
+  is_half_blood: True
+  wand: 
+    Object:
+      wood: 'Holly'
+      core: 'Phoenix feather'
+      length: 11.0
+  patronus: 'Stag'
+  friends: 
+    Array:
+      'Ron Weasley'
+      'Hermione Granger'
+      'Hagrid'
+  special_skills: 
+    Array:
+      'Parseltongue'
+      'Defense Against the Dark Arts'
+  boggart: 'Dementor'
+  quiddich_player: True
+  future_profession: None

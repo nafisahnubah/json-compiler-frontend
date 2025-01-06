@@ -1,0 +1,1 @@
+Error type 6: Consistent Types for List Elements.

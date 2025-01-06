@@ -1,0 +1,70 @@
+<LPAREN, None>
+<STRING, name>
+<COLON, None>
+<STRING, Hermione Granger>
+<COMMA, None>
+<STRING, house>
+<COLON, None>
+<STRING, Gryffindor>
+<COMMA, None>
+<STRING, year_of_birth>
+<COLON, None>
+<NUMBER, 1979.0>
+<COMMA, None>
+<STRING, is_half_blood>
+<COLON, None>
+<FALSE, None>
+<COMMA, None>
+<STRING, wand>
+<COLON, None>
+<LPAREN, None>
+<STRING, wood>
+<COLON, None>
+<STRING, Vine>
+<COMMA, None>
+<STRING, core>
+<COLON, None>
+<STRING, Dragon heartstring>
+<COMMA, None>
+<STRING, length>
+<COLON, None>
+<NUMBER, 10.75>
+<RPAREN, None>
+<COMMA, None>
+<STRING, patronus>
+<COLON, None>
+<STRING, Otter>
+<COMMA, None>
+<STRING, friends>
+<COLON, None>
+<LBRACKET, None>
+<STRING, Harry Potter>
+<COMMA, None>
+<STRING, Ron Weasley>
+<COMMA, None>
+<STRING, Ginny Weasley>
+<RBRACKET, None>
+<COMMA, None>
+<STRING, special_skills>
+<COLON, None>
+<LBRACKET, None>
+<STRING, Exceptional Memory>
+<COMMA, None>
+<STRING, Spell Casting>
+<COMMA, None>
+<STRING, Arithmancy>
+<RBRACKET, None>
+<COMMA, None>
+<STRING, boggart>
+<COLON, None>
+<STRING, Failure in academics>
+<COMMA, None>
+<STRING, quiddich_player>
+<COLON, None>
+<FALSE, None>
+<COMMA, None>
+<STRING, future_profession>
+<COLON, None>
+<STRING, Minister of Magic>
+<RPAREN, None>
+<EOF, None>
