@@ -1,5 +1,4 @@
 # Name: Nafisah Nubah
-# ID: B00961732
 
 # Token types
 class TokenType:
@@ -28,10 +27,10 @@ class Token:
 
 # Lexer error
 class LexerError(Exception):
-    def __init__(self, position, character):
+    def __init__(self, position, character, message=None):
         self.position = position
         self.character = character
-        super().__init__(f"Invalid character '{character}' at position {position}")
+        super().__init__(message or f"Invalid character '{character}' at position {position}")
 
 
 class Lexer:
@@ -67,11 +66,24 @@ class Lexer:
 
     # Recognize numbers
     def recognize_number(self):
+        start = self.position
         result = ''
         while self.current_char is not None and (self.current_char.isdigit() or self.current_char in ['.', 'e', 'E', '-', '+']):
             result += self.current_char
             self.advance()
-        return Token(TokenType.NUMBER, float(result))
+        try:
+            return Token(TokenType.NUMBER, float(result))
+        except ValueError:
+            raise LexerError(start, result, f"Invalid number '{result}' at position {start}") from None
+
+    # Recognize true, false and null
+    def recognize_keyword(self):
+        for word, token_type in (('true', TokenType.TRUE), ('false', TokenType.FALSE), ('null', TokenType.NULL)):
+            if self.input_text.startswith(word, self.position):
+                self.position += len(word)
+                self.current_char = self.input_text[self.position] if self.position < len(self.input_text) else None
+                return Token(token_type)
+        return None
 
     # Get next token from input
     def get_next_token(self):
@@ -99,18 +111,9 @@ class Lexer:
             if self.current_char == ':':
                 self.advance()
                 return Token(TokenType.COLON)
-            if self.current_char == 't' and self.input_text[self.position+1] == 'r' and self.input_text[self.position+2] == 'u' and self.input_text[self.position+3] == 'e':
-                self.position += 4
-                self.current_char = self.input_text[self.position] if self.position < len(self.input_text) else None
-                return Token(TokenType.TRUE)
-            if self.current_char == 'f' and self.input_text[self.position+1] == 'a' and self.input_text[self.position+2] == 'l' and self.input_text[self.position+3] == 's' and self.input_text[self.position+4] == 'e':
-                self.position += 5
-                self.current_char = self.input_text[self.position] if self.position < len(self.input_text) else None
-                return Token(TokenType.FALSE)
-            if self.current_char == 'n' and self.input_text[self.position+1] == 'u' and self.input_text[self.position+2] == 'l' and self.input_text[self.position+3] == 'l':
-                self.position += 4
-                self.current_char = self.input_text[self.position] if self.position < len(self.input_text) else None
-                return Token(TokenType.NULL)
+            keyword_token = self.recognize_keyword()
+            if keyword_token:
+                return keyword_token
 
             # Strings
             if self.current_char in ['"', '“']:
