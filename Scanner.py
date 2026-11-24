@@ -27,10 +27,10 @@ class Token:
 
 # Lexer error
 class LexerError(Exception):
-    def __init__(self, position, character):
+    def __init__(self, position, character, message=None):
         self.position = position
         self.character = character
-        super().__init__(f"Invalid character '{character}' at position {position}")
+        super().__init__(message or f"Invalid character '{character}' at position {position}")
 
 
 class Lexer:
@@ -66,11 +66,15 @@ class Lexer:
 
     # Recognize numbers
     def recognize_number(self):
+        start = self.position
         result = ''
         while self.current_char is not None and (self.current_char.isdigit() or self.current_char in ['.', 'e', 'E', '-', '+']):
             result += self.current_char
             self.advance()
-        return Token(TokenType.NUMBER, float(result))
+        try:
+            return Token(TokenType.NUMBER, float(result))
+        except ValueError:
+            raise LexerError(start, result, f"Invalid number '{result}' at position {start}") from None
 
     # Recognize true, false and null
     def recognize_keyword(self):
