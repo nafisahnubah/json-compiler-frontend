@@ -14,38 +14,27 @@ class Node:
     def add_child(self, child):
         self.children.append(child)
 
-    def print_tree(self, depth=0, file_name=None):
-        """Writes output abstract syntax tree in a specified .txt file"""
+    def leaf_text(self):
+        """Text for a leaf node; strings are wrapped in single quotes"""
+        return f"'{self.value}'" if self.label == "String" else f"{self.value}"
+
+    def print_tree(self, depth=0, out_file=None):
+        """Writes output abstract syntax tree to an open .txt file"""
         indent = "  " * depth
         if self.is_leaf:
-            if self.label == "String":
-                output = f"{indent}'{self.value}'\n"
-                file_name.write(output)
+            out_file.write(f"{indent}{self.leaf_text()}\n")
+        elif self.label in ("Object", "Array"):
+            out_file.write(f"{indent}{self.label}:\n")
+            for child in self.children:
+                child.print_tree(depth + 1, out_file)
+        elif self.label == "Pair":
+            value_node = self.children[1]
+            out_file.write(f"{indent}{self.children[0].value}: ")
+            if value_node.is_leaf:
+                out_file.write(f"{value_node.leaf_text()}\n")
             else:
-                output = f"{indent}{self.value}\n"
-                file_name.write(output)
-        else:
-            if self.label == "Object":
-                file_name.write(f"{indent}Object:\n")
-
-                for child in self.children:
-                    child.print_tree(depth + 1, file_name)
-
-            elif self.label == "Array":
-                file_name.write(f"{indent}Array:\n")
-                for child in self.children:
-                    child.print_tree(depth + 1, file_name)
-            elif self.label == "Pair":
-                value_node = self.children[1]
-                file_name.write(f"{indent}{self.children[0].value}: ")
-                if value_node.is_leaf:
-                    if value_node.label == "String":
-                        file_name.write(f"'{value_node.value}'\n")
-                    else:
-                        file_name.write(f"{value_node.value}\n")
-                else:
-                    file_name.write("\n")
-                    value_node.print_tree(depth + 1, file_name)
+                out_file.write("\n")
+                value_node.print_tree(depth + 1, out_file)
 
 
 class Parser:
@@ -220,7 +209,7 @@ if __name__ == "__main__":
             tree = parser.parse(output_file)
             if parser.semantically_correct:
                 with open(output_file, 'w') as output_file:
-                    tree.print_tree(file_name=output_file)
+                    tree.print_tree(out_file=output_file)
         except Exception as e:
             print(f"Parse Error: {e}")
 
