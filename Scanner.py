@@ -1,5 +1,4 @@
 # Name: Nafisah Nubah
-# ID: B00961732
 
 # Token types
 class TokenType:
