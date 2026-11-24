@@ -1,0 +1,6 @@
+# Microsoft Office lock files
+~$*
+
+# Python
+__pycache__/
+*.pyc
